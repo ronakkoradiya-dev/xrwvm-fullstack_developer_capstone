@@ -91,17 +91,31 @@ def get_dealer_details(request, dealer_id):
 
 # Create get_dealer_reviews method which takes the dealer_id as a parameter and adds sentiment analysis
 def get_dealer_reviews(request, dealer_id):
-    # if dealer id has been provided
-    if(dealer_id):
-        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
+    if dealer_id:
+        endpoint = "/fetchReviews/dealer/" + str(dealer_id)
         reviews = get_request(endpoint)
+        
+        # Guard against backend returning an error object instead of a list
+        if not isinstance(reviews, list):
+            return JsonResponse({"status": 500, "message": "Invalid response from backend service", "details": reviews})
+
         for review_detail in reviews:
-            response = analyze_review_sentiments(review_detail['review'])
-            print(response)
-            review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status":200,"reviews":reviews})
+            try:
+                # Ensure 'review' key exists and is not empty
+                review_text = review_detail.get('review', '')
+                if review_text:
+                    sentiment_response = analyze_review_sentiments(review_text)
+                    # Safely grab sentiment, fallback to 'neutral' if missing
+                    review_detail['sentiment'] = sentiment_response.get('sentiment', 'neutral')
+                else:
+                    review_detail['sentiment'] = 'neutral'
+            except Exception as e:
+                print(f"Error analyzing sentiment for review: {e}")
+                review_detail['sentiment'] = 'neutral' # Fallback so the loop doesn't crash
+                
+        return JsonResponse({"status": 200, "reviews": reviews})
     else:
-        return JsonResponse({"status":400,"message":"Bad Request"})
+        return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
 
@@ -117,3 +131,13 @@ def add_review(request):
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
         # ...
+
+def get_cars(request):
+    try:
+        # Calls your Node server endpoint (e.g., http://localhost:3030/get_cars)
+        cars = get_request("/get_cars")
+        if cars:
+            return JsonResponse(cars)
+        return JsonResponse({"CarModels": []})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
