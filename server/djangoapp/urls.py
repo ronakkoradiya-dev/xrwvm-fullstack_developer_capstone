@@ -12,8 +12,14 @@ urlpatterns = [
     path(route='login', view=views.login_user, name='login'),
     path(route='logout', view=views.logout_request, name='logout'),
     path(route='register', view=views.registration, name='register'),
-    # path for dealer reviews view
-
-    # path for add a review view
-
+    # Dealership routes
+    path(route='get_dealers', view=views.get_dealerships, name='get_dealers'),
+    path(route='get_dealers/<str:state>', view=views.get_dealerships, name='get_dealers_by_state'),
+    
+    # Dealer details route (adjust path route if your lab pattern differs, typically dealer/<int:dealer_id>)
+    path(route='dealer/<int:dealer_id>', view=views.get_dealer_details, name='dealer_details'),
+    
+    # Dealer reviews route
+    path(route='reviews/dealer/<int:dealer_id>', view=views.get_dealer_reviews, name='dealer_reviews'), 
+    path(route='add_review', view=views.add_review, name='add_review'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
