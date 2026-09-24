@@ -1,0 +1,15 @@
+{
+  "esversion": 8,
+  "node": true,
+  "browser": true,
+  "sub": true,
+  "asi": true,
+  "undef": false,
+  "unused": false,
+  "globals": {
+    "console": true,
+    "module": true,
+    "require": true,
+    "process": true
+  }
+}
