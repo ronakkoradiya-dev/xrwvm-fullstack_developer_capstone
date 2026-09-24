@@ -10,1739 +10,1741 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
-const cars_data = {"cars": [
-    {
-        "make": "Nissan",
-        "model": "Pathfinder",
-        "bodyType": "SUV",
-        "year": 2023,
-        "dealer_id": 1,
-        "mileage": 15000
-    },
-    {
-        "make": "Kia",
-        "model": "Seltos",
-        "bodyType": "SUV",
-        "year": 2022,
-        "dealer_id": 8,
-        "mileage": 8000
-    },
-    {
-        "make": "Audi",
-        "model": "A4",
-        "bodyType": "Sedan",
-        "year": 2021,
-        "dealer_id": 15,
-        "mileage": 12000
-    },
-    {
-        "make": "Mercedes",
-        "model": "GLE",
-        "bodyType": "SUV",
-        "year": 2020,
-        "dealer_id": 22,
-        "mileage": 5000
-    },
-    {
-        "make": "Toyota",
-        "model": "Camry",
-        "bodyType": "Sedan",
-        "year": 2023,
-        "dealer_id": 30,
-        "mileage": 10000
-    },
-    {
-        "make": "Nissan",
-        "model": "Rogue",
-        "bodyType": "SUV",
-        "year": 2022,
-        "dealer_id": 2,
-        "mileage": 6000
-    },
-    {
-        "make": "Kia",
-        "model": "Telluride",
-        "bodyType": "SUV",
-        "year": 2021,
-        "dealer_id": 11,
-        "mileage": 3000
-    },
-    {
-        "make": "Audi",
-        "model": "Q5",
-        "bodyType": "SUV",
-        "year": 2020,
-        "dealer_id": 18,
-        "mileage": 20000
-    },
-    {
-        "make": "Mercedes",
-        "model": "C-Class",
-        "bodyType": "Sedan",
-        "year": 2023,
-        "dealer_id": 25,
-        "mileage": 7000
-    },
-    {
-        "make": "Toyota",
-        "model": "Highlander",
-        "bodyType": "SUV",
-        "year": 2022,
-        "dealer_id": 33,
-        "mileage": 15000
-    },
-    {
-      "make": "Nissan",
-      "model": "Altima",
-      "bodyType": "Sedan",
-      "year": 2022,
-      "dealer_id": 5,
-      "mileage": 18000
-  },
-  {
-      "make": "Kia",
-      "model": "Sportage",
-      "bodyType": "SUV",
-      "year": 2021,
-      "dealer_id": 12,
-      "mileage": 12000
-  },
-  {
-      "make": "Audi",
-      "model": "A3",
-      "bodyType": "Hatchback",
-      "year": 2020,
-      "dealer_id": 19,
-      "mileage": 8000
-  },
-  {
-      "make": "Mercedes",
-      "model": "E-Class",
-      "bodyType": "Sedan",
-      "year": 2023,
-      "dealer_id": 26,
-      "mileage": 3000
-  },
-  {
-      "make": "Toyota",
-      "model": "RAV4",
-      "bodyType": "SUV",
-      "year": 2022,
-      "dealer_id": 35,
-      "mileage": 25000
-  },
-  {
-      "make": "Nissan",
-      "model": "Maxima",
-      "bodyType": "Sedan",
-      "year": 2021,
-      "dealer_id": 3,
-      "mileage": 10000
-  },
-  {
-      "make": "Kia",
-      "model": "Cadenza",
-      "bodyType": "Sedan",
-      "year": 2020,
-      "dealer_id": 14,
-      "mileage": 15000
-  },
-  {
-      "make": "Audi",
-      "model": "Q7",
-      "bodyType": "SUV",
-      "year": 2023,
-      "dealer_id": 21,
-      "mileage": 5000
-  },
-  {
-      "make": "Mercedes",
-      "model": "GLC",
-      "bodyType": "SUV",
-      "year": 2022,
-      "dealer_id": 28,
-      "mileage": 7000
-  },
-  {
-      "make": "Toyota",
-      "model": "Corolla",
-      "bodyType": "Sedan",
-      "year": 2021,
-      "dealer_id": 38,
-      "mileage": 12000
-  },
-  {
-      "make": "Nissan",
-      "model": "Murano",
-      "bodyType": "SUV",
-      "year": 2020,
-      "dealer_id": 6,
-      "mileage": 20000
-  },
-  {
-      "make": "Kia",
-      "model": "Optima",
-      "bodyType": "Sedan",
-      "year": 2023,
-      "dealer_id": 16,
-      "mileage": 4000
-  },
-  {
-      "make": "Audi",
-      "model": "S5",
-      "bodyType": "Coupe",
-      "year": 2022,
-      "dealer_id": 23,
-      "mileage": 6000
-  },
-  {
-      "make": "Mercedes",
-      "model": "S-Class",
-      "bodyType": "Sedan",
-      "year": 2021,
-      "dealer_id": 30,
-      "mileage": 9000
-  },
-  {
-      "make": "Toyota",
-      "model": "Sienna",
-      "bodyType": "Minivan",
-      "year": 2020,
-      "dealer_id": 41,
-      "mileage": 30000
-  },
-  {
-      "make": "Nissan",
-      "model": "370Z",
-      "bodyType": "Coupe",
-      "year": 2023,
-      "dealer_id": 8,
-      "mileage": 1500
-  },
-  {
-      "make": "Kia",
-      "model": "Rio",
-      "bodyType": "Hatchback",
-      "year": 2022,
-      "dealer_id": 18,
-      "mileage": 18000
-  },
-  {
-      "make": "Audi",
-      "model": "TT",
-      "bodyType": "Convertible",
-      "year": 2021,
-      "dealer_id": 25,
-      "mileage": 10000
-  },
-  {
-      "make": "Mercedes",
-      "model": "CLA",
-      "bodyType": "Sedan",
-      "year": 2020,
-      "dealer_id": 33,
-      "mileage": 22000
-  },
-  {
-      "make": "Toyota",
-      "model": "Tacoma",
-      "bodyType": "Pickup",
-      "year": 2023,
-      "dealer_id": 45,
-      "mileage": 8000
-  },  
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 10,
-    "mileage": 14000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 22,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "A5",
-    "bodyType": "Convertible",
-    "year": 2020,
-    "dealer_id": 28,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLA",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 35,
-    "mileage": 5000
-  },
-  {
-    "make": "Toyota",
-    "model": "Prius",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 42,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Armada",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 2,
-    "mileage": 8000
-  },
-  {
-    "make": "Kia",
-    "model": "Niro",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 12,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 19,
-    "mileage": 3000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLE Coupe",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 25,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Avalon",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 30,
-    "mileage": 10000
-  },
-  {
-    "make": "Nissan",
-    "model": "Sentra",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 7,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Soul",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 15,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "S7",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 23,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLB",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 31,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "4Runner",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 38,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Juke",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 9,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Forte",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 18,
-    "mileage": 17000
-  },
-  {
-    "make": "Audi",
-    "model": "Q8",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 26,
-    "mileage": 11000
-  },
-  {
-    "make": "Mercedes",
-    "model": "A-Class",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 33,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Tundra",
-    "bodyType": "Pickup",
-    "year": 2023,
-    "dealer_id": 46,
-    "mileage": 7500
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 9,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Forte",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 19,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 26,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "A-Class",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 34,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Prius",
-    "bodyType": "Hatchback",
-    "year": 2021,
-    "dealer_id": 40,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Sentra",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 5,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Niro",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 14,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "A6",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 21,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLA",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 28,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Yaris",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 37,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Cube",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 7,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 17,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A5",
-    "bodyType": "Convertible",
-    "year": 2021,
-    "dealer_id": 24,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLS",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 32,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "4Runner",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 43,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Juke",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 10,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Soul",
-    "bodyType": "Hatchback",
-    "year": 2021,
-    "dealer_id": 20,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "Q8",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 27,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "AMG GT",
-    "bodyType": "Coupe",
-    "year": 2023,
-    "dealer_id": 36,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Avalon",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Armada",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 12,
-    "mileage": 22000
-  },
-  {
-    "make": "Kia",
-    "model": "Telluride",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 21,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "S3",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 28,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "M-Class",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 37,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Land Cruiser",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 44,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "370Z",
-    "bodyType": "Coupe",
-    "year": 2020,
-    "dealer_id": 5,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Rio",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 15,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q5",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 22,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "C-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 29,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Highlander",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 38,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 6,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Seltos",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 16,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A4",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 23,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLE",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 30,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Camry",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 39,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Rogue",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 7,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Telluride",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 17,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 24,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 33,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Corolla",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 46,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Murano",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 8,
-    "mileage": 18000
-  },
-  {
-    "make": "Kia",
-    "model": "Optima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 18,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "S5",
-    "bodyType": "Coupe",
-    "year": 2023,
-    "dealer_id": 25,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "S-Class",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 34,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Sienna",
-    "bodyType": "Minivan",
-    "year": 2021,
-    "dealer_id": 43,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Altima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 9,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Sportage",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 19,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "A3",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 26,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "E-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 35,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "RAV4",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 42,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Maxima",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 11,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Cadenza",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 20,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q7",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 27,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 36,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Yaris",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 45,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Cube",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 13,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 22,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A5",
-    "bodyType": "Convertible",
-    "year": 2020,
-    "dealer_id": 29,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLS",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 38,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "4Runner",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Juke",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 14,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Soul",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 23,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "TT",
-    "bodyType": "Convertible",
-    "year": 2023,
-    "dealer_id": 30,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "CLA",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 39,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Tacoma",
-    "bodyType": "Pickup",
-    "year": 2021,
-    "dealer_id": 48,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 15,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Forte",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 24,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 31,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "A-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 40,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Prius",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 49,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Armada",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 1,
-    "mileage": 22000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 8,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "S3",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 15,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "M-Class",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 22,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Land Cruiser",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 29,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "370Z",
-    "bodyType": "Coupe",
-    "year": 2020,
-    "dealer_id": 6,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Rio",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 16,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q5",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 23,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "C-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 30,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Highlander",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 39,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 7,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Seltos",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 17,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A4",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 24,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLE",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 31,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Camry",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 40,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Rogue",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 8,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Telluride",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 18,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 25,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 34,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Corolla",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Murano",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 9,
-    "mileage": 18000
-  },
-  {
-    "make": "Kia",
-    "model": "Optima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 19,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "S5",
-    "bodyType": "Coupe",
-    "year": 2023,
-    "dealer_id": 26,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "S-Class",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 35,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Sienna",
-    "bodyType": "Minivan",
-    "year": 2021,
-    "dealer_id": 44,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Altima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 10,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Sportage",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 20,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "A3",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 27,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "E-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 36,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "RAV4",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 43,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Maxima",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 11,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Cadenza",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 21,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q7",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 28,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 37,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Yaris",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 46,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Cube",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 13,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 22,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A5",
-    "bodyType": "Convertible",
-    "year": 2020,
-    "dealer_id": 29,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLS",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 38,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "4Runner",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Juke",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 14,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Soul",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 23,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "TT",
-    "bodyType": "Convertible",
-    "year": 2023,
-    "dealer_id": 30,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "CLA",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 39,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Tacoma",
-    "bodyType": "Pickup",
-    "year": 2021,
-    "dealer_id": 48,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 15,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Forte",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 24,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 31,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "A-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 40,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Prius",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 49,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Armada",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 1,
-    "mileage": 22000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 8,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "S3",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 15,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "M-Class",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 22,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "Land Cruiser",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 29,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "370Z",
-    "bodyType": "Coupe",
-    "year": 2020,
-    "dealer_id": 6,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Rio",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 16,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q5",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 23,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "C-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 30,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Highlander",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 39,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Versa",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 7,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Seltos",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 17,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A4",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 24,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLE",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 31,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Camry",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 40,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Rogue",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 8,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Telluride",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 18,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "Q3",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 25,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 34,
-    "mileage": 22000
-  },
-  {
-    "make": "Toyota",
-    "model": "Corolla",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 8000
-  },
-  {
-    "make": "Nissan",
-    "model": "Murano",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 9,
-    "mileage": 18000
-  },
-  {
-    "make": "Kia",
-    "model": "Optima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 19,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "S5",
-    "bodyType": "Coupe",
-    "year": 2023,
-    "dealer_id": 26,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "S-Class",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 35,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "Sienna",
-    "bodyType": "Minivan",
-    "year": 2021,
-    "dealer_id": 44,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Altima",
-    "bodyType": "Sedan",
-    "year": 2020,
-    "dealer_id": 10,
-    "mileage": 15000
-  },
-  {
-    "make": "Kia",
-    "model": "Sportage",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 20,
-    "mileage": 12000
-  },
-  {
-    "make": "Audi",
-    "model": "A3",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 27,
-    "mileage": 8000
-  },
-  {
-    "make": "Mercedes",
-    "model": "E-Class",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 36,
-    "mileage": 3000
-  },
-  {
-    "make": "Toyota",
-    "model": "RAV4",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 43,
-    "mileage": 25000
-  },
-  {
-    "make": "Nissan",
-    "model": "Maxima",
-    "bodyType": "Sedan",
-    "year": 2023,
-    "dealer_id": 11,
-    "mileage": 10000
-  },
-  {
-    "make": "Kia",
-    "model": "Cadenza",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 21,
-    "mileage": 15000
-  },
-  {
-    "make": "Audi",
-    "model": "Q7",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 28,
-    "mileage": 5000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLC",
-    "bodyType": "SUV",
-    "year": 2020,
-    "dealer_id": 37,
-    "mileage": 7000
-  },
-  {
-    "make": "Toyota",
-    "model": "Yaris",
-    "bodyType": "Hatchback",
-    "year": 2023,
-    "dealer_id": 46,
-    "mileage": 12000
-  },
-  {
-    "make": "Nissan",
-    "model": "Cube",
-    "bodyType": "Hatchback",
-    "year": 2022,
-    "dealer_id": 13,
-    "mileage": 20000
-  },
-  {
-    "make": "Kia",
-    "model": "Stinger",
-    "bodyType": "Sedan",
-    "year": 2021,
-    "dealer_id": 22,
-    "mileage": 4000
-  },
-  {
-    "make": "Audi",
-    "model": "A5",
-    "bodyType": "Convertible",
-    "year": 2020,
-    "dealer_id": 29,
-    "mileage": 6000
-  },
-  {
-    "make": "Mercedes",
-    "model": "GLS",
-    "bodyType": "SUV",
-    "year": 2023,
-    "dealer_id": 38,
-    "mileage": 9000
-  },
-  {
-    "make": "Toyota",
-    "model": "4Runner",
-    "bodyType": "SUV",
-    "year": 2022,
-    "dealer_id": 47,
-    "mileage": 30000
-  },
-  {
-    "make": "Nissan",
-    "model": "Juke",
-    "bodyType": "SUV",
-    "year": 2021,
-    "dealer_id": 14,
-    "mileage": 1500
-  },
-  {
-    "make": "Kia",
-    "model": "Soul",
-    "bodyType": "Hatchback",
-    "year": 2020,
-    "dealer_id": 23,
-    "mileage": 18000
-  },
-  {
-    "make": "Audi",
-    "model": "TT",
-    "bodyType": "Convertible",
-    "year": 2023,
-    "dealer_id": 30,
-    "mileage": 10000
-  },
-  {
-    "make": "Mercedes",
-    "model": "CLA",
-    "bodyType": "Sedan",
-    "year": 2022,
-    "dealer_id": 39,
-    "mileage": 22000
-  }
-  ]};
+const cars_data = {
+    "cars": [
+        {
+            "make": "Nissan",
+            "model": "Pathfinder",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 1,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Seltos",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 8,
+            "mileage": 8000
+        },
+        {
+            "make": "Audi",
+            "model": "A4",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 15,
+            "mileage": 12000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLE",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 22,
+            "mileage": 5000
+        },
+        {
+            "make": "Toyota",
+            "model": "Camry",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 30,
+            "mileage": 10000
+        },
+        {
+            "make": "Nissan",
+            "model": "Rogue",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 2,
+            "mileage": 6000
+        },
+        {
+            "make": "Kia",
+            "model": "Telluride",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 11,
+            "mileage": 3000
+        },
+        {
+            "make": "Audi",
+            "model": "Q5",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 18,
+            "mileage": 20000
+        },
+        {
+            "make": "Mercedes",
+            "model": "C-Class",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 25,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Highlander",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 33,
+            "mileage": 15000
+        },
+        {
+            "make": "Nissan",
+            "model": "Altima",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 5,
+            "mileage": 18000
+        },
+        {
+            "make": "Kia",
+            "model": "Sportage",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 12,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "A3",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 19,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "E-Class",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 26,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "RAV4",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 35,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Maxima",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 3,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Cadenza",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 14,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q7",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 21,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 28,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Corolla",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 38,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Murano",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 6,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Optima",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 16,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "S5",
+            "bodyType": "Coupe",
+            "year": 2022,
+            "dealer_id": 23,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "S-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 30,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Sienna",
+            "bodyType": "Minivan",
+            "year": 2020,
+            "dealer_id": 41,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "370Z",
+            "bodyType": "Coupe",
+            "year": 2023,
+            "dealer_id": 8,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Rio",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 18,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "TT",
+            "bodyType": "Convertible",
+            "year": 2021,
+            "dealer_id": 25,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "CLA",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 33,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Tacoma",
+            "bodyType": "Pickup",
+            "year": 2023,
+            "dealer_id": 45,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 10,
+            "mileage": 14000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 22,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "A5",
+            "bodyType": "Convertible",
+            "year": 2020,
+            "dealer_id": 28,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLA",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 35,
+            "mileage": 5000
+        },
+        {
+            "make": "Toyota",
+            "model": "Prius",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 42,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Armada",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 2,
+            "mileage": 8000
+        },
+        {
+            "make": "Kia",
+            "model": "Niro",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 12,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 19,
+            "mileage": 3000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLE Coupe",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 25,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Avalon",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 30,
+            "mileage": 10000
+        },
+        {
+            "make": "Nissan",
+            "model": "Sentra",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 7,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Soul",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 15,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "S7",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 23,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLB",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 31,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "4Runner",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 38,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Juke",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 9,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Forte",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 18,
+            "mileage": 17000
+        },
+        {
+            "make": "Audi",
+            "model": "Q8",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 26,
+            "mileage": 11000
+        },
+        {
+            "make": "Mercedes",
+            "model": "A-Class",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 33,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Tundra",
+            "bodyType": "Pickup",
+            "year": 2023,
+            "dealer_id": 46,
+            "mileage": 7500
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 9,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Forte",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 19,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 26,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "A-Class",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 34,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Prius",
+            "bodyType": "Hatchback",
+            "year": 2021,
+            "dealer_id": 40,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Sentra",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 5,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Niro",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 14,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "A6",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 21,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLA",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 28,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Yaris",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 37,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Cube",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 7,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 17,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A5",
+            "bodyType": "Convertible",
+            "year": 2021,
+            "dealer_id": 24,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLS",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 32,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "4Runner",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 43,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Juke",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 10,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Soul",
+            "bodyType": "Hatchback",
+            "year": 2021,
+            "dealer_id": 20,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "Q8",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 27,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "AMG GT",
+            "bodyType": "Coupe",
+            "year": 2023,
+            "dealer_id": 36,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Avalon",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Armada",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 12,
+            "mileage": 22000
+        },
+        {
+            "make": "Kia",
+            "model": "Telluride",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 21,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "S3",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 28,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "M-Class",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 37,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Land Cruiser",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 44,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "370Z",
+            "bodyType": "Coupe",
+            "year": 2020,
+            "dealer_id": 5,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Rio",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 15,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q5",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 22,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "C-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 29,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Highlander",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 38,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 6,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Seltos",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 16,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A4",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 23,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLE",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 30,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Camry",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 39,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Rogue",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 7,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Telluride",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 17,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 24,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 33,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Corolla",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 46,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Murano",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 8,
+            "mileage": 18000
+        },
+        {
+            "make": "Kia",
+            "model": "Optima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 18,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "S5",
+            "bodyType": "Coupe",
+            "year": 2023,
+            "dealer_id": 25,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "S-Class",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 34,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Sienna",
+            "bodyType": "Minivan",
+            "year": 2021,
+            "dealer_id": 43,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Altima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 9,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Sportage",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 19,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "A3",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 26,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "E-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 35,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "RAV4",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 42,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Maxima",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 11,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Cadenza",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 20,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q7",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 27,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 36,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Yaris",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 45,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Cube",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 13,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 22,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A5",
+            "bodyType": "Convertible",
+            "year": 2020,
+            "dealer_id": 29,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLS",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 38,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "4Runner",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Juke",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 14,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Soul",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 23,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "TT",
+            "bodyType": "Convertible",
+            "year": 2023,
+            "dealer_id": 30,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "CLA",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 39,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Tacoma",
+            "bodyType": "Pickup",
+            "year": 2021,
+            "dealer_id": 48,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 15,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Forte",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 24,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 31,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "A-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 40,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Prius",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 49,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Armada",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 1,
+            "mileage": 22000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 8,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "S3",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 15,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "M-Class",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 22,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Land Cruiser",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 29,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "370Z",
+            "bodyType": "Coupe",
+            "year": 2020,
+            "dealer_id": 6,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Rio",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 16,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q5",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 23,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "C-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 30,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Highlander",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 39,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 7,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Seltos",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 17,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A4",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 24,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLE",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 31,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Camry",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 40,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Rogue",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 8,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Telluride",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 18,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 25,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 34,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Corolla",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Murano",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 9,
+            "mileage": 18000
+        },
+        {
+            "make": "Kia",
+            "model": "Optima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 19,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "S5",
+            "bodyType": "Coupe",
+            "year": 2023,
+            "dealer_id": 26,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "S-Class",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 35,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Sienna",
+            "bodyType": "Minivan",
+            "year": 2021,
+            "dealer_id": 44,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Altima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 10,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Sportage",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 20,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "A3",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 27,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "E-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 36,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "RAV4",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 43,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Maxima",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 11,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Cadenza",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 21,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q7",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 28,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 37,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Yaris",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 46,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Cube",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 13,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 22,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A5",
+            "bodyType": "Convertible",
+            "year": 2020,
+            "dealer_id": 29,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLS",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 38,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "4Runner",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Juke",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 14,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Soul",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 23,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "TT",
+            "bodyType": "Convertible",
+            "year": 2023,
+            "dealer_id": 30,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "CLA",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 39,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Tacoma",
+            "bodyType": "Pickup",
+            "year": 2021,
+            "dealer_id": 48,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 15,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Forte",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 24,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 31,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "A-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 40,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Prius",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 49,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Armada",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 1,
+            "mileage": 22000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 8,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "S3",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 15,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "M-Class",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 22,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "Land Cruiser",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 29,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "370Z",
+            "bodyType": "Coupe",
+            "year": 2020,
+            "dealer_id": 6,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Rio",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 16,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q5",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 23,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "C-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 30,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Highlander",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 39,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Versa",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 7,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Seltos",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 17,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A4",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 24,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLE",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 31,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Camry",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 40,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Rogue",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 8,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Telluride",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 18,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "Q3",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 25,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 34,
+            "mileage": 22000
+        },
+        {
+            "make": "Toyota",
+            "model": "Corolla",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 8000
+        },
+        {
+            "make": "Nissan",
+            "model": "Murano",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 9,
+            "mileage": 18000
+        },
+        {
+            "make": "Kia",
+            "model": "Optima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 19,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "S5",
+            "bodyType": "Coupe",
+            "year": 2023,
+            "dealer_id": 26,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "S-Class",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 35,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "Sienna",
+            "bodyType": "Minivan",
+            "year": 2021,
+            "dealer_id": 44,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Altima",
+            "bodyType": "Sedan",
+            "year": 2020,
+            "dealer_id": 10,
+            "mileage": 15000
+        },
+        {
+            "make": "Kia",
+            "model": "Sportage",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 20,
+            "mileage": 12000
+        },
+        {
+            "make": "Audi",
+            "model": "A3",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 27,
+            "mileage": 8000
+        },
+        {
+            "make": "Mercedes",
+            "model": "E-Class",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 36,
+            "mileage": 3000
+        },
+        {
+            "make": "Toyota",
+            "model": "RAV4",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 43,
+            "mileage": 25000
+        },
+        {
+            "make": "Nissan",
+            "model": "Maxima",
+            "bodyType": "Sedan",
+            "year": 2023,
+            "dealer_id": 11,
+            "mileage": 10000
+        },
+        {
+            "make": "Kia",
+            "model": "Cadenza",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 21,
+            "mileage": 15000
+        },
+        {
+            "make": "Audi",
+            "model": "Q7",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 28,
+            "mileage": 5000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLC",
+            "bodyType": "SUV",
+            "year": 2020,
+            "dealer_id": 37,
+            "mileage": 7000
+        },
+        {
+            "make": "Toyota",
+            "model": "Yaris",
+            "bodyType": "Hatchback",
+            "year": 2023,
+            "dealer_id": 46,
+            "mileage": 12000
+        },
+        {
+            "make": "Nissan",
+            "model": "Cube",
+            "bodyType": "Hatchback",
+            "year": 2022,
+            "dealer_id": 13,
+            "mileage": 20000
+        },
+        {
+            "make": "Kia",
+            "model": "Stinger",
+            "bodyType": "Sedan",
+            "year": 2021,
+            "dealer_id": 22,
+            "mileage": 4000
+        },
+        {
+            "make": "Audi",
+            "model": "A5",
+            "bodyType": "Convertible",
+            "year": 2020,
+            "dealer_id": 29,
+            "mileage": 6000
+        },
+        {
+            "make": "Mercedes",
+            "model": "GLS",
+            "bodyType": "SUV",
+            "year": 2023,
+            "dealer_id": 38,
+            "mileage": 9000
+        },
+        {
+            "make": "Toyota",
+            "model": "4Runner",
+            "bodyType": "SUV",
+            "year": 2022,
+            "dealer_id": 47,
+            "mileage": 30000
+        },
+        {
+            "make": "Nissan",
+            "model": "Juke",
+            "bodyType": "SUV",
+            "year": 2021,
+            "dealer_id": 14,
+            "mileage": 1500
+        },
+        {
+            "make": "Kia",
+            "model": "Soul",
+            "bodyType": "Hatchback",
+            "year": 2020,
+            "dealer_id": 23,
+            "mileage": 18000
+        },
+        {
+            "make": "Audi",
+            "model": "TT",
+            "bodyType": "Convertible",
+            "year": 2023,
+            "dealer_id": 30,
+            "mileage": 10000
+        },
+        {
+            "make": "Mercedes",
+            "model": "CLA",
+            "bodyType": "Sedan",
+            "year": 2022,
+            "dealer_id": 39,
+            "mileage": 22000
+        }
+    ]
+};
 
-mongoose.connect("mongodb://mongo_db:27017/",{'dbName':'dealershipsDB'});
+mongoose.connect("mongodb://mongo_db:27017/", { 'dbName': 'dealershipsDB' });
 
 const Reviews = require('./review');
 const Dealerships = require('./dealership');
 const Car = require('./inventory'); // Matches your model filename
 
 try {
-  Reviews.deleteMany({}).then(()=>{
-    Reviews.insertMany(reviews_data['reviews']);
-  });
-  Dealerships.deleteMany({}).then(()=>{
-    Dealerships.insertMany(dealerships_data['dealerships']);
-  });
-  Car.deleteMany({}).then(()=>{
-    Car.insertMany(cars_data['cars']);
-  });
+    Reviews.deleteMany({}).then(() => {
+        Reviews.insertMany(reviews_data['reviews']);
+    });
+    Dealerships.deleteMany({}).then(() => {
+        Dealerships.insertMany(dealerships_data['dealerships']);
+    });
+    Car.deleteMany({}).then(() => {
+        Car.insertMany(cars_data['cars']);
+    });
 } catch (error) {
-  console.log(error);
+    console.log(error);
 }
 
 // Express route to home
@@ -1752,22 +1754,22 @@ app.get('/', async (req, res) => {
 
 // Express route to fetch all reviews
 app.get('/fetchReviews', async (req, res) => {
-  try {
-    const documents = await Reviews.find();
-    res.json(documents);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching documents' });
-  }
+    try {
+        const documents = await Reviews.find();
+        res.json(documents);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching documents' });
+    }
 });
 
 // Express route to fetch reviews by a particular dealer
 app.get('/fetchReviews/dealer/:id', async (req, res) => {
-  try {
-    const documents = await Reviews.find({dealership: req.params.id});
-    res.json(documents);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching documents' });
-  }
+    try {
+        const documents = await Reviews.find({ dealership: req.params.id });
+        res.json(documents);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching documents' });
+    }
 });
 
 // Express Route for fetching all dealerships (Fixed Dealerships model name)
@@ -1807,11 +1809,11 @@ app.get('/fetchDealer/:id', async (req, res) => {
 
 // Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
-  let data = JSON.parse(req.body);
-  const documents = await Reviews.find().sort( { id: -1 } )
-  let new_id = documents[0]['id']+1
+    let data = JSON.parse(req.body);
+    const documents = await Reviews.find().sort({ id: -1 })
+    let new_id = documents[0]['id'] + 1
 
-  const review = new Reviews({
+    const review = new Reviews({
         "id": new_id,
         "name": data['name'],
         "dealership": data['dealership'],
@@ -1823,18 +1825,18 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
         "car_year": data['car_year'],
     });
 
-  try {
-    const savedReview = await review.save();
-    res.json(savedReview);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Error inserting review' });
-  }
+    try {
+        const savedReview = await review.save();
+        res.json(savedReview);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Error inserting review' });
+    }
 });
 
 // Start the Express server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
 
 app.get('/get_cars', async (req, res) => {

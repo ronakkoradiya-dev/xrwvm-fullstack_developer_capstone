@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 120
+extend-ignore = E203, E266, E501, W503, E722, F841, E302, E303, W291, W292, W293, E275, E231, E225, E712, E122, E131
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    venv,
+    env
